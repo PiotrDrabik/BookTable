@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import img from './resources/wood-bg.jpg';
+import img from './resources/wood-bg2.png';
+import table from './resources/table.png';
 import Top from './components/Top.js';
 import './App.css';
 import { Button, Row, Col, Container } from 'reactstrap';
@@ -17,30 +18,19 @@ class App extends Component {
         color: 'blue',
         background: `url(${img}) repeat`
     } 
-
+    const tableStyle = {
+        color: 'black',
+        background: `url(${table}) no-repeat`,
+        backgroundSize: 'cover',
+        height: '190px',
+        width: '200px'
+    }
+    const buttonPosition = {
+      marginTop: '-50%',
+      marginLeft: '40%'
+    }
     return (
       <div className="App" style={mainBgStyle}>
-        {/*
-        <Row>
-          <Col sm={{ size: 10, offset: 1}} style={headerStyle}>
-            <div className="appNameStyle">book a table</div>
-            <Row>
-              <Col sm={{ size: 4}}>
-                <div>{moment(this.state.startDate).format('LL')}</div>
-              </Col>
-              <Col sm={{ size: 4}}>
-                <DatePicker 
-                    inline
-                    dateFormat="YYYY/MM/DD"
-                    selected={this.state.startDate}
-                    onChange={this.handleChange}
-                />
-              </Col>
-              <Col sm={{ size: 4}}>
-              </Col>
-            </Row>
-          </Col>
-        </Row>*/}
         <Top/>
         <Button color="danger">Danger!</Button>
          <Container>
@@ -53,6 +43,52 @@ class App extends Component {
               <Col sm={{ size: 'auto', offset: 6 }}>.col-sm .col-sm-offset-6</Col>
             </Row>
          </Container>
+         <Container>
+            <Row>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+                 <Button color="danger" style={buttonPosition}>Danger!</Button>
+              </Col>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+            </Row>
+            <Row className="padding-bottom-20">
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+              <Col sm="12" md="3">
+                 <div style={tableStyle}></div>
+              </Col>
+            </Row>
+         </Container>
+         
       </div>
     );
   }
