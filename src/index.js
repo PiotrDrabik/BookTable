@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import './index.css';
+import './styles/index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import reducer from './store/reducer.js';
+import bookTableReducers from './reducers/index';
 import 'bootstrap/dist/css/bootstrap.css';
 
-const store = createStore(reducer);
+const store = createStore(bookTableReducers);
 
 ReactDOM.render(<Provider store={store}>
                     <App />

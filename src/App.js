@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import img from './resources/wood-bg2.png';
 import table from './resources/table.png';
-import Top from './components/Top.js';
-import './App.css';
+import Top from './containers/Top.js';
+import './styles/App.css';
 import { Button, Row, Col, Container } from 'reactstrap';
 
 class App extends Component {
