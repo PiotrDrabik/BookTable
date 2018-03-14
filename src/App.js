@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Button, Row, Col, Container } from 'reactstrap';
+
 import img from './resources/wood-bg2.png';
 import table from './resources/table.png';
 import Top from './containers/Top.js';
 import './styles/App.css';
-import { Button, Row, Col, Container } from 'reactstrap';
 
 class App extends Component {
   
@@ -32,7 +34,6 @@ class App extends Component {
     return (
       <div className="App" style={mainBgStyle}>
         <Top/>
-        <Button color="danger">Danger!</Button>
          <Container>
             <Row>
               <Col sm="12" md={{ size: 8, offset: 2 }}>.col-sm-12 .col-md-6 .col-md-offset-3</Col>
@@ -47,7 +48,7 @@ class App extends Component {
             <Row>
               <Col sm="12" md="3">
                  <div style={tableStyle}></div>
-                 <Button color="danger" style={buttonPosition}>Danger!</Button>
+                 <Button color="danger" onClick={ () => console.log(this)} style={buttonPosition}>Danger!</Button>
               </Col>
               <Col sm="12" md="3">
                  <div style={tableStyle}></div>
@@ -94,4 +95,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+
+    return state;
+};
+
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

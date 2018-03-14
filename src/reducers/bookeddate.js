@@ -5,12 +5,11 @@ const initialState = {
 const bookeddate = (state = initialState, action) => {
     switch(action.type) {
         case 'SET_DATE':
-            return [
+            return {
                 ...state,
-                {
-                    bookDate: action.bookDate
-                }
-            ]
+                bookDate: action.bookDate,
+                rawBookDate: action.rawBookDate
+            }
         default:
             return state;
     }

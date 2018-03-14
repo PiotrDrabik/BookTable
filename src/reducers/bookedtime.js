@@ -5,12 +5,10 @@ const initialState = {
 const bookedtime = (state = initialState, action) => {
     switch(action.type) {
         case 'SET_TIME':
-            return [
+            return {
                 ...state,
-                {
-                    bookTime: action.bookTime
-                }
-            ]
+                bookTime: action.bookTime
+            }
         default:
             return state;
     }
