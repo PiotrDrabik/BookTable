@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Container, ListGroup, ListGroupItem } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
@@ -45,45 +44,49 @@ class Top extends Component {
     };
     const timeArray = ['10:00 - 13:00', '13:00 - 16:00', '16:00 - 19:00', '19:00 - 22:00'];
     const listTimeItems = timeArray.map((timeItem) =>
-      <ListGroupItem onClick={ () => this.setTime(timeItem)} tag="a" href="#" key={timeItem}>{timeItem}</ListGroupItem>
+      <div className="list-group-item" onClick={ () => this.setTime(timeItem)} tag="a" href="#" key={timeItem}>{timeItem}</div>
     );
 
   return (
-    <Container fluid={true}>
-          <Row>
-            <Col sm={{ size: 12, offset: 0}} style={headerStyle}>
+    <div className="container-fluid">
+          <div className="row">
+            <div className="col" style={headerStyle}>
                 <div className="app-name-style">book a table</div>
                 <div className="app-logo-style">Restaurant Voyage<br /> Wroclaw, Lotnicza 11</div>
-                  <Row className="padding-bottom-20">
-                      <Col md={{ size: 3}}>
-                        <ListGroup className="padding-top-40">
-                          <ListGroupItem style={firstRow}>Select time interval</ListGroupItem>
+                  <div className="row padding-bottom-20">
+                      <div className="col-3">
+                        <div className="list-group padding-top-40">
+                          <div className="list-group-item" style={firstRow}>Select time interval</div>
                           {listTimeItems}
-                        </ListGroup>
+                        </div>
 
-                        <ListGroup className="padding-top-15">
-                          <ListGroupItem style={firstRow}>Your choice:</ListGroupItem>
-                          <ListGroupItem>restaurant</ListGroupItem>
-                          <ListGroupItem><div>{moment(this.props.bookeddate.bookDate).format('LL')}</div></ListGroupItem>
-                          <ListGroupItem><div>{this.props.bookedtime.bookTime ? this.props.bookedtime.bookTime : 'select time'}</div></ListGroupItem>
-                          <ListGroupItem>table ??</ListGroupItem>
-                        </ListGroup>
-                      </Col> 
-                      <Col md={{ size: 3}} className="padding-top-40">
+                        <div className="list-group padding-top-15">
+                          <div className="list-group-item" style={firstRow}>Your choice:</div>
+                          <div className="list-group-item">restaurant</div>
+                          <div className="list-group-item">
+                              <span>{this.props.bookeddate.bookDate ? moment(this.props.bookeddate.bookDate).format('LL') : 'select date'}</span>
+                          </div>
+                          <div className="list-group-item">
+                              <span>{this.props.bookedtime.bookTime ? this.props.bookedtime.bookTime : 'select time'}</span>
+                          </div>
+                          <div className="list-group-item">select table</div>
+                        </div>
+                      </div>
+                      <div className="col-3 padding-top-40">
                         <DatePicker 
                             inline
                             dateFormat="YYYY/MM/DD"
                             selected={this.localBookDate}
                             onChange={this.handleChange} />
-                      </Col>
-                      <Col md={{ size: 3}}>col3
-                      </Col>
-                      <Col md={{ size: 3}}>col4
-                      </Col>
-                    </Row>
-            </Col>
-          </Row> 
-      </Container>
+                      </div>
+                      <div className="col-3">col3
+                      </div>
+                      <div className="col-3">col4
+                      </div>
+                    </div>
+            </div>
+          </div>
+      </div>
       )
   }
 }
