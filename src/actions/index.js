@@ -5,7 +5,7 @@ export const setDate = (newRawDate, newDate) => {
         bookDate: newDate
     }
 }
-//{type: 'SET_DATE', rawBookDate: date, bookDate: moment(date).format('LL')}
+
 export const setTime = newTime => {
     return {
         type: 'SET_TIME',

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-import { setDate, setTime } from './../actions/index';
+import * as action from './../actions/index';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Top.css';
 
@@ -44,7 +44,7 @@ class Top extends Component {
     };
     const timeArray = ['10:00 - 13:00', '13:00 - 16:00', '16:00 - 19:00', '19:00 - 22:00'];
     const listTimeItems = timeArray.map((timeItem) =>
-      <div className="list-group-item" onClick={ () => this.setTime(timeItem)} tag="a" href="#" key={timeItem}>{timeItem}</div>
+      <div className="list-group-item cursor-pointer" onClick={ () => this.setTime(timeItem)} tag="a" href="#" key={timeItem}>{timeItem}</div>
     );
 
   return (
@@ -99,8 +99,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        setDate: (date) => dispatch( setDate(date, moment(date).format() )),
-        setTime: (time) => dispatch( setTime(time) )
+        setDate: (date) => dispatch( action.setDate(date, moment(date).format() )),
+        setTime: (time) => dispatch( action.setTime(time) )
     }
 };
 
