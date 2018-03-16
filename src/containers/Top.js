@@ -21,17 +21,16 @@ class Top extends Component {
 
         let currentDate = new Date();
         if (moment(currentDate).format("YYYY-MM-DD") > moment(date).format("YYYY-MM-DD")) {
-            console.log('currentDate > date');
             this.props.setAlert('chosen date is from the past');
+        } else {
+            this.props.removeAlert();
+            this.props.setDate(date);
         }
-        this.props.setDate(date);
-        console.log('this', this);
     }
 
     setTime(timeItem) {
 
         this.props.setTime(timeItem);
-        console.log('this', this);
     }
 
     render() {
@@ -44,7 +43,7 @@ class Top extends Component {
             margin: '10px'
         };
         const firstRow = {
-            backgroundColor: 'lightgrey',
+            backgroundColor: '#f0f0f0',
             color: 'black'
         };
         const timeArray = ['10:00 - 13:00', '13:00 - 16:00', '16:00 - 19:00', '19:00 - 22:00'];
@@ -70,7 +69,7 @@ class Top extends Component {
 
                                 <div className="list-group padding-top-15">
                                     <div className="list-group-item" style={firstRow}>Your choice:</div>
-                                    <div className="list-group-item">restaurant</div>
+                                    <div className="list-group-item">{this.props.restaurant.name}</div>
                                     <div className="list-group-item">
                                         <span>{this.props.bookeddate.bookDate ? moment(this.props.bookeddate.bookDate).format('LL') : 'select date'}</span>
                                     </div>
@@ -109,7 +108,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setDate: (date) => dispatch(action.setDate(date, moment(date).format())),
         setTime: (time) => dispatch(action.setTime(time)),
-        setAlert: (message) => dispatch(action.setAlert(message))
+        setAlert: (message) => dispatch(action.setAlert(message)),
+        removeAlert: () => dispatch(action.removeAlert())
     }
 };
 

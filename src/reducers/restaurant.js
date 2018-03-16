@@ -1,6 +1,6 @@
 const initialState = {
     name: 'Restaurant Voyage',
-    address: 'Wroclaw, Lotnicza 11'
+    address: 'Wrocław, Lotnicza 11'
 };
 
 const restaurant = (state = initialState, action) => {
