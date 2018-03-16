@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import img from './resources/wood-bg2.png';
 import table from './resources/table.png';
 import Top from './containers/Top.js';
+import Alert from './components/alert';
 import './styles/App.css';
+
 
 class App extends Component {
   
@@ -32,10 +34,9 @@ class App extends Component {
     };
     return (
       <div className="App" style={mainBgStyle}>
-        <Top/>
-        <div className="container-fluid" style={{backgroundColor: 'red'}}>
-            <button type="button" className="btn btn-warning">Warning</button>
-        </div>
+          <Top/>
+          <Alert alert={this.props.alert} />
+
          <div className="container">
             <div className="row">
               <div className="col-12 col-md-3">

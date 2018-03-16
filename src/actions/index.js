@@ -12,3 +12,16 @@ export const setTime = newTime => {
         bookTime: newTime
     }
 }
+
+export const setAlert = message => {
+    return {
+        type: 'SET_ALERT',
+        message: message
+    }
+}
+
+export const removeAlert = () => {
+    return {
+        type: 'REMOVE_ALERT'
+    }
+}
