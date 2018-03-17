@@ -19,18 +19,61 @@ class Top extends Component {
 
     handleChange(date) {
 
-        let currentDate = new Date();
-        if (moment(currentDate).format("YYYY-MM-DD") > moment(date).format("YYYY-MM-DD")) {
-            this.props.setAlert('chosen date is from the past');
-        } else {
-            this.props.removeAlert();
-            this.props.setDate(date);
-        }
+        this.compareCurrentDate(date);
+        this.props.setTime('');
     }
 
     setTime(timeItem) {
 
-        this.props.setTime(timeItem);
+        let startHour = timeItem.substring(0, 2);
+        let checkedTime = this.compareCurrentTime(startHour);
+        if (checkedTime) {
+            this.props.setTime(timeItem);
+        }
+    }
+
+    compareCurrentTime(startHour) {
+
+        let currentTime = new Date();
+
+        let checkedDate = this.compareCurrentDate(this.props.bookeddate.bookDate);
+        if (checkedDate.today) {
+            if (moment(currentTime).format("HH") > startHour) {
+                this.props.setAlert('chosen time interval is from the past');
+            } else if (moment(currentTime).format("HH") === startHour) {
+                    this.props.setAlert('chosen time interval has already started');
+            } else {
+                this.props.removeAlert();
+                return true;
+            }
+        } else {
+            this.props.removeAlert();
+            return true;
+        }
+    }
+
+    compareCurrentDate(date) {
+
+        const setNewDate = (date) => {
+            this.props.removeAlert();
+            this.props.setDate(date);
+        };
+
+        if (!date) {
+            date = new Date();
+        }
+        let currentDate = new Date();
+        let result = {};
+        if (moment(currentDate).format("YYYY-MM-DD") > moment(date).format("YYYY-MM-DD")) {
+            result.past = true;
+            this.props.setAlert('chosen date is from the past');
+        } else if (moment(currentDate).format("YYYY-MM-DD") === moment(date).format("YYYY-MM-DD")) {
+            result.today = true;
+            setNewDate(date);
+        } else {
+            setNewDate(date);
+        }
+        return result;
     }
 
     render() {
@@ -69,11 +112,11 @@ class Top extends Component {
 
                                 <div className="list-group padding-top-15">
                                     <div className="list-group-item" style={firstRow}>Your choice:</div>
-                                    <div className="list-group-item">{this.props.restaurant.name}</div>
-                                    <div className="list-group-item">
+                                    <div className="list-group-item list-group-item-success">{this.props.restaurant.name}</div>
+                                    <div className={"list-group-item " + (this.props.bookeddate.bookDate ? 'list-group-item-success' : '')}>
                                         <span>{this.props.bookeddate.bookDate ? moment(this.props.bookeddate.bookDate).format('LL') : 'select date'}</span>
                                     </div>
-                                    <div className="list-group-item">
+                                    <div className={"list-group-item " + (this.props.bookedtime.bookTime ? 'list-group-item-success' : '')}>
                                         <span>{this.props.bookedtime.bookTime ? this.props.bookedtime.bookTime : 'select time'}</span>
                                     </div>
                                     <div className="list-group-item">select table</div>

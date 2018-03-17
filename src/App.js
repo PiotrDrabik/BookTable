@@ -52,8 +52,16 @@ class App extends Component {
             width: '200px'
         };
         const buttonPosition = {
-            marginTop: '-50%',
+            marginTop: '-70%',
             marginLeft: '40%'
+        };
+        const descriptionPosition = {
+            marginTop: '-20%',
+            marginLeft: '40%',
+            backgroundColor: '#f0f0f0',
+            color: 'black',
+            borderRadius: '5px',
+            fontSize: '11px'
         };
         return (
             <div className="App" style={mainBgStyle}>
@@ -64,24 +72,31 @@ class App extends Component {
                     <div className="row">
                         <div className="col-12 col-md-3">
                             <div style={barCounterStyle}></div>
+                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="bar seats"
+                                    className="btn btn-secondary" disabled>
+                            </button>
+                            <div style={descriptionPosition}>bar counter</div>
                         </div>
                         <div className="col-12 col-md-3">
                             <div style={tableStyle}></div>
-                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="Tooltip on top"
-                                    className="btn btn-danger">Danger
+                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="try to change time/date"
+                                    className="btn btn-danger" disabled>Booked
                             </button>
+                            <div style={descriptionPosition}>table #1 - next to bar</div>
                         </div>
                         <div className="col-12 col-md-3">
                             <div style={tableStyle}></div>
-                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="Tooltip on top"
-                                    className="btn btn-success">Success
+                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="can be booked"
+                                    className="btn btn-success">Book
                             </button>
+                            <div style={descriptionPosition}>table #2</div>
                         </div>
                         <div className="col-12 col-md-3">
                             <div style={tableStyle}></div>
-                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="Tooltip on top"
-                                    className="btn btn-success">Success
+                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="can be booked"
+                                    className="btn btn-success">Book
                             </button>
+                            <div style={descriptionPosition}>table #3 - next to a wall</div>
                         </div>
                     </div>
                     <div className="row">
@@ -93,6 +108,10 @@ class App extends Component {
                         </div>
                         <div className="col-12 col-md-3">
                             <div style={flowerStyle}></div>
+                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="separates some tables"
+                                    className="btn btn-secondary" disabled>
+                            </button>
+                            <div style={descriptionPosition}>decorative element</div>
                         </div>
                         <div className="col-12 col-md-3">
                             <div style={tableStyle}></div>
