@@ -2,13 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import imgWood from './resources/wood-bg2.png';
-import imgTable from './resources/table.png';
-import imgFlower from './resources/flower.png';
-import imgBarCounter from './resources/bar-counter.png';
 import $ from 'jquery';
 
 import Top from './containers/Top.js';
 import Alert from './components/alert';
+import Interior from './components/interior';
 import './styles/App.css';
 
 
@@ -30,122 +28,45 @@ class App extends Component {
             color: 'blue',
             background: `url(${imgWood}) repeat`
         };
-        const tableStyle = {
-            color: 'black',
-            background: `url(${imgTable}) no-repeat`,
-            backgroundSize: 'cover',
-            height: '190px',
-            width: '200px'
-        };
-        const flowerStyle = {
-            color: 'black',
-            background: `url(${imgFlower}) no-repeat`,
-            backgroundSize: 'cover',
-            height: '180px',
-            width: '180px'
-        };
-        const barCounterStyle = {
-            color: 'black',
-            background: `url(${imgBarCounter}) no-repeat`,
-            backgroundSize: 'cover',
-            height: '200px',
-            width: '200px'
-        };
-        const buttonPosition = {
-            marginTop: '-70%',
-            marginLeft: '40%'
-        };
-        const descriptionPosition = {
-            marginTop: '-20%',
-            marginLeft: '40%',
-            backgroundColor: '#f0f0f0',
-            color: 'black',
-            borderRadius: '5px',
-            fontSize: '11px'
+        const arrangement = [
+            {type: 'bar', description: 'bar counter', txtTooltip: 'bar seats', id: 'bar #1'},
+            {type: 'table', description: 'table #1 - next to the bar', txtTooltip: '', id: 'table #1'},
+            {type: 'table', description: 'table #2', txtTooltip: '', id: 'table #2'},
+            {type: 'table', description: 'table #3 - next to a wall', txtTooltip: '', id: 'table #3'},
+            {type: 'table', description: 'table #4 - next to the bar', txtTooltip: '', id: 'table #4'},
+            {type: 'table', description: 'table #5', txtTooltip: '', id: 'table #5'},
+            {type: 'flower', description: 'decorative element', txtTooltip: 'separates some tables', id: 'flower #1'},
+            {type: 'table', description: 'table #6 - behind the decoration', txtTooltip: '', id: 'table #6'},
+            {type: 'table', description: 'table #7', txtTooltip: '', id: 'table #7'},
+            {type: 'table', description: 'table #8', txtTooltip: '', id: 'table #8'},
+            {type: 'table', description: 'table #9', txtTooltip: '', id: 'table #9'},
+            {type: 'table', description: 'table #10', txtTooltip: '', id: 'table #10'},
+            {type: 'flower', description: 'decorative element', txtTooltip: 'separates some tables', id: 'flower #2'},
+            {type: 'table', description: 'table #11', txtTooltip: '', id: 'table #11'},
+            {type: 'table', description: 'table #12', txtTooltip: '', id: 'table #12'},
+            {type: 'table', description: 'table #13 - at the corner', txtTooltip: '', id: 'table #13'}
+        ];
+        const tableStatus = {
+            'table #1': {booked: true, btnLabel: 'Booked', txtTooltip: 'try to change time/date'},
+            'table #2': {booked: false},
+            'table #3': {booked: false},
+            'table #4': {booked: true, txtTooltip: 'try to change time/date'},
+            'table #5': {booked: false},
+            'table #6': {booked: false},
+            'table #7': {booked: false},
+            'table #8': {booked: true, txtTooltip: 'try to change time/date'},
+            'table #9': {booked: true, txtTooltip: 'try to change time/date'},
+            'table #10': {booked: false},
+            'table #11': {booked: false},
+            'table #12': {booked: false},
+            'table #13': {booked: true}
         };
         return (
             <div className="App" style={mainBgStyle}>
                 <Top/>
                 <Alert alert={this.props.alert}/>
-
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-md-3">
-                            <div style={barCounterStyle}></div>
-                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="bar seats"
-                                    className="btn btn-secondary" disabled>
-                            </button>
-                            <div style={descriptionPosition}>bar counter</div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="try to change time/date"
-                                    className="btn btn-danger" disabled>Booked
-                            </button>
-                            <div style={descriptionPosition}>table #1 - next to bar</div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="can be booked"
-                                    className="btn btn-success">Book
-                            </button>
-                            <div style={descriptionPosition}>table #2</div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="can be booked"
-                                    className="btn btn-success">Book
-                            </button>
-                            <div style={descriptionPosition}>table #3 - next to a wall</div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={flowerStyle}></div>
-                            <button type="button" onClick={() => console.log(this)} style={buttonPosition} data-toggle="tooltip" data-placement="top" title="separates some tables"
-                                    className="btn btn-secondary" disabled>
-                            </button>
-                            <div style={descriptionPosition}>decorative element</div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                    </div>
-                    <div className="row padding-bottom-20">
-                        <div className="col-12 col-md-3">
-                            <div style={flowerStyle}></div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                        <div className="col-12 col-md-3">
-                            <div style={tableStyle}></div>
-                        </div>
-                    </div>
-                </div>
+                <Interior arrangement={arrangement} tableStatus={tableStatus}/>
+                *
             </div>
         );
     }
