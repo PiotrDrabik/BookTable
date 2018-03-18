@@ -3,6 +3,10 @@ import React from 'react';
 import imgTable from './../resources/table.png';
 import imgFlower from './../resources/flower.png';
 import imgBarCounter from './../resources/bar-counter.png';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
+import faTimes from '@fortawesome/fontawesome-free-solid/faTimes';
+
 
 const Interior = (props) => {
 
@@ -40,6 +44,9 @@ const Interior = (props) => {
         borderRadius: '5px',
         fontSize: '11px'
     };
+    const whiteColor = {
+        color: '#ffffff'
+    };
     const tooltipPlacement = "bottom";
     const selectedElement = (item) => {
         switch (item) {
@@ -67,8 +74,8 @@ const Interior = (props) => {
         }
     };
     const defaultLabel = {
-        buttonActive: 'Book',
-        buttonInactive: 'Booked',
+        buttonActive: <FontAwesomeIcon style={whiteColor} icon={faPlus} />,
+        buttonInactive: <FontAwesomeIcon style={whiteColor} icon={faTimes} />,
         tooltipActive: 'can be booked',
         tooltipInactive: 'try to change time/date'
     };

@@ -47,7 +47,7 @@ class App extends Component {
             {type: 'table', description: 'table #13 - at the corner', txtTooltip: '', id: 'table #13'}
         ];
         const tableStatus = {
-            'table #1': {booked: true, btnLabel: 'Booked', txtTooltip: 'try to change time/date'},
+            'table #1': {booked: true, btnLabel: 'pending', txtTooltip: 'try to change time/date'},
             'table #2': {booked: false},
             'table #3': {booked: false},
             'table #4': {booked: true, txtTooltip: 'try to change time/date'},
