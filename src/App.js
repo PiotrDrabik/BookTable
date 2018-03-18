@@ -19,7 +19,8 @@ class App extends Component {
 
     componentDidMount() {
 
-        $('[data-toggle="tooltip"]').tooltip('show');
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="tooltip"][disabled]').tooltip('show');
     }
 
     render() {
