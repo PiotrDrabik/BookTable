@@ -6,6 +6,7 @@ import moment from 'moment';
 import * as action from './../actions/index';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Top.css';
+import Contact from './Contact.js';
 
 class Top extends Component {
 
@@ -93,7 +94,7 @@ class Top extends Component {
                             className="app-logo-style">{this.props.restaurant.name}<br/> {this.props.restaurant.address}
                         </div>
                         <div className="row padding-bottom-20">
-                            <div className="col-12 col-sm-6 col-md-3">
+                            <div className="col-12 col-sm-6 col-md-6 col-lg-3">
                                 <div className="list-group padding-top-40">
                                     <div className="list-group-item first-row">Select time interval</div>
                                     {listTimeItems}
@@ -113,7 +114,7 @@ class Top extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-12 col-sm-6 col-md-3 padding-top-40">
+                            <div className="col-12 col-sm-6 col-md-6 col-lg-3 padding-top-40 overflow-no">
                                 <DatePicker
                                     inline
                                     dateFormat="YYYY/MM/DD"
@@ -122,9 +123,9 @@ class Top extends Component {
                                     selected={this.localBookDate}
                                     onChange={this.handleChange}/>
                             </div>
-                            <div className="col-12 col-sm-6 col-md-3">col3
+                            <div className="col-12 col-sm-6 col-md-6 col-lg-3 padding-top-40"><Contact />
                             </div>
-                            <div className="col-12 col-sm-6 col-md-3">col4
+                            <div className="col-12 col-sm-6 col-md-6 col-lg-3">col4
                             </div>
                         </div>
                     </div>

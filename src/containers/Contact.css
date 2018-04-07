@@ -1,0 +1,12 @@
+.txt-contact {
+    text-align: left;
+    color: black;
+}
+
+.font-contact {
+    font-size: 0.8em;
+}
+
+.border-contact {
+    border: 1px lightgrey solid;
+}
