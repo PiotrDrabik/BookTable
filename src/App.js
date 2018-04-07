@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 
 import imgWood from './resources/wood-bg2.png';
 import $ from 'jquery';
+import axios from 'axios';
 
+import * as action from './actions/index';
 import Top from './containers/Top.js';
 import Alert from './components/alert';
 import Interior from './components/interior';
@@ -19,34 +21,29 @@ class App extends Component {
 
     componentDidMount() {
 
-        $('[data-toggle="tooltip"]').tooltip();
-        $('[data-toggle="tooltip"][disabled]').tooltip('show');
+        this.getRestaurantArrangement().then( (data) => {
+            this.props.setArrangement(data);
+        }).then( () => {
+            $('[data-toggle="tooltip"]').tooltip();
+            //$('[data-toggle="tooltip"][disabled]').tooltip('show');
+        });
+    }
+
+    getRestaurantArrangement() {
+
+        const ARRANGEMENT_URL = 'http://book-table.papoldesign.pl/index.php';
+        return axios.get(ARRANGEMENT_URL).then( (response) => {
+            return response.data;
+        });
     }
 
     render() {
 
         const mainBgStyle = {
             color: 'blue',
-            background: `url(${imgWood}) repeat`
+            background: `url(${imgWood}) repeat`,
+            minWidth: '310px'
         };
-        const arrangement = [
-            {type: 'bar', description: 'bar counter', txtTooltip: 'bar seats', id: 'bar #1'},
-            {type: 'table', description: 'table #1 - next to the bar', txtTooltip: '', id: 'table #1'},
-            {type: 'table', description: 'table #2', txtTooltip: '', id: 'table #2'},
-            {type: 'table', description: 'table #3 - next to a wall', txtTooltip: '', id: 'table #3'},
-            {type: 'table', description: 'table #4 - next to the bar', txtTooltip: '', id: 'table #4'},
-            {type: 'table', description: 'table #5', txtTooltip: '', id: 'table #5'},
-            {type: 'flower', description: 'decorative element', txtTooltip: 'separates some tables', id: 'flower #1'},
-            {type: 'table', description: 'table #6 - behind the decoration', txtTooltip: '', id: 'table #6'},
-            {type: 'table', description: 'table #7', txtTooltip: '', id: 'table #7'},
-            {type: 'table', description: 'table #8', txtTooltip: '', id: 'table #8'},
-            {type: 'table', description: 'table #9', txtTooltip: '', id: 'table #9'},
-            {type: 'table', description: 'table #10', txtTooltip: '', id: 'table #10'},
-            {type: 'flower', description: 'decorative element', txtTooltip: 'separates some tables', id: 'flower #2'},
-            {type: 'table', description: 'table #11', txtTooltip: '', id: 'table #11'},
-            {type: 'table', description: 'table #12', txtTooltip: '', id: 'table #12'},
-            {type: 'table', description: 'table #13 - at the corner', txtTooltip: '', id: 'table #13'}
-        ];
         const tableStatus = {
             'table #1': {booked: true, btnLabel: 'pending', txtTooltip: 'try to change time/date'},
             'table #2': {booked: false},
@@ -66,8 +63,8 @@ class App extends Component {
             <div className="App" style={mainBgStyle}>
                 <Top/>
                 <Alert alert={this.props.alert}/>
-                <Interior arrangement={arrangement} tableStatus={tableStatus}/>
-                *
+                <Interior arrangement={this.props.restaurant.arrangement} tableStatus={tableStatus}/>
+                <button type="button" onClick={() => console.log(this.props)}>Props</button>
             </div>
         );
     }
@@ -80,7 +77,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 
-    return {}
+    return {
+        setArrangement: (data) => dispatch(action.setArrangement(data))
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

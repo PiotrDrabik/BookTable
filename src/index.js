@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'jquery';
@@ -14,7 +15,7 @@ import registerServiceWorker from './registerServiceWorker';
 import bookTableReducers from './reducers/index';
 
 
-const store = createStore(bookTableReducers);
+const store = createStore(bookTableReducers, applyMiddleware(thunk));
 
 ReactDOM.render(<Provider store={store}>
                     <App />

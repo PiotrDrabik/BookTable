@@ -78,14 +78,6 @@ class Top extends Component {
 
     render() {
 
-        const headerStyle = {
-            backgroundColor: 'rgba(255,255,255,0.1)',
-            border: '1px solid black',
-            marginTop: '10px',
-            marginBottom: '10px',
-            margin: '10px',
-            minWidth: '560px'
-        };
         const firstRow = {
             backgroundColor: '#f0f0f0',
             color: 'black'
@@ -99,13 +91,13 @@ class Top extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col" style={headerStyle}>
+                    <div className="col header-style">
                         <div className="app-name-style">book a table</div>
                         <div
                             className="app-logo-style">{this.props.restaurant.name}<br/> {this.props.restaurant.address}
                         </div>
                         <div className="row padding-bottom-20">
-                            <div className="col-6 col-md-3">
+                            <div className="col-12 col-sm-6 col-md-3">
                                 <div className="list-group padding-top-40">
                                     <div className="list-group-item" style={firstRow}>Select time interval</div>
                                     {listTimeItems}
@@ -123,7 +115,7 @@ class Top extends Component {
                                     <div className="list-group-item">select table</div>
                                 </div>
                             </div>
-                            <div className="col-6 col-md-3 padding-top-40">
+                            <div className="col-12 col-sm-6 col-md-3 padding-top-40">
                                 <DatePicker
                                     inline
                                     dateFormat="YYYY/MM/DD"
@@ -132,9 +124,9 @@ class Top extends Component {
                                     selected={this.localBookDate}
                                     onChange={this.handleChange}/>
                             </div>
-                            <div className="col-6 col-md-3">col3
+                            <div className="col-12 col-sm-6 col-md-3">col3
                             </div>
-                            <div className="col-6 col-md-3">col4
+                            <div className="col-12 col-sm-6 col-md-3">col4
                             </div>
                         </div>
                     </div>
