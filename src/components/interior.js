@@ -6,7 +6,7 @@ import {selectedElement, buttonPosition, descriptionPosition} from './interior-r
 
 const Interior = (props) => {
 
-    let {arrangement, tableStatus} = props;
+    let {arrangement, tableStatus, setTable} = props;
 
     const tooltipPlacement = "bottom";
     const selectedButton = (item) => {
@@ -35,7 +35,7 @@ const Interior = (props) => {
 
         return <div className="col-12 col-md-3" key={element.field_id}>
                     <div style={item.bgStyle}></div>
-                    <button type="button" onClick={() => console.log(arrangement)} style={buttonPosition} data-toggle={button.disabled ? '' :'tooltip'}
+                    <button type="button" onClick={() => setTable(element.field_id)} style={buttonPosition} data-toggle={button.disabled ? '' :'tooltip'}
                             data-placement={tooltipPlacement} title={tooltipTitle} className={button.btnClass} disabled={button.disabled}>
                         {tableStatus[element.field_id] ? tableStatus[element.field_id].btnLabel || (button.disabled ? defaultLabel.buttonInactive : defaultLabel.buttonActive) : ''}
                     </button>

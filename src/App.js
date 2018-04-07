@@ -14,11 +14,6 @@ import './styles/App.css';
 
 class App extends Component {
 
-    constructor(props) {
-
-        super(props)
-    }
-
     componentDidMount() {
 
         this.getRestaurantArrangement().then( (data) => {
@@ -63,7 +58,8 @@ class App extends Component {
             <div className="App" style={mainBgStyle}>
                 <Top/>
                 <Alert alert={this.props.alert}/>
-                <Interior arrangement={this.props.restaurant.arrangement} tableStatus={tableStatus}/>
+                <Interior arrangement={this.props.restaurant.arrangement} tableStatus={tableStatus} setTable={this.props.setTable} />
+                <br/>
                 <button type="button" onClick={() => console.log(this.props)}>Props</button>
             </div>
         );
@@ -78,7 +74,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        setArrangement: (data) => dispatch(action.setArrangement(data))
+        setArrangement: (data) => dispatch(action.setArrangement(data)),
+        setTable: (table) => dispatch(action.setTable(table))
     }
 };
 

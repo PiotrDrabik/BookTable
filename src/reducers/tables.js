@@ -7,7 +7,7 @@ const tables = (state = initialState, action) => {
         case 'SET_TABLE':
             return {
                 ...state,
-                selectedTable: action.table
+                selectedTable: action.selectedTable
             }
         default:
             return state;
