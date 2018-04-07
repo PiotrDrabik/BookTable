@@ -78,10 +78,6 @@ class Top extends Component {
 
     render() {
 
-        const firstRow = {
-            backgroundColor: '#f0f0f0',
-            color: 'black'
-        };
         const timeArray = ['10:00 - 13:00', '13:00 - 16:00', '16:00 - 19:00', '19:00 - 22:00'];
         const listTimeItems = timeArray.map((timeItem) =>
             <div className="list-group-item cursor-pointer" onClick={() => this.setTime(timeItem)} tag="a" href="#"
@@ -99,12 +95,12 @@ class Top extends Component {
                         <div className="row padding-bottom-20">
                             <div className="col-12 col-sm-6 col-md-3">
                                 <div className="list-group padding-top-40">
-                                    <div className="list-group-item" style={firstRow}>Select time interval</div>
+                                    <div className="list-group-item first-row">Select time interval</div>
                                     {listTimeItems}
                                 </div>
 
                                 <div className="list-group padding-top-15">
-                                    <div className="list-group-item" style={firstRow}>Your choice:</div>
+                                    <div className="list-group-item first-row">Your choice:</div>
                                     <div className="list-group-item list-group-item-success">{this.props.restaurant.name}</div>
                                     <div className={"list-group-item " + (this.props.bookeddate.bookDate ? 'list-group-item-success' : '')}>
                                         <span>{this.props.bookeddate.bookDate ? moment(this.props.bookeddate.bookDate).format('LL') : 'select date'}</span>
@@ -112,7 +108,9 @@ class Top extends Component {
                                     <div className={"list-group-item " + (this.props.bookedtime.bookTime ? 'list-group-item-success' : '')}>
                                         <span>{this.props.bookedtime.bookTime ? this.props.bookedtime.bookTime : 'select time'}</span>
                                     </div>
-                                    <div className="list-group-item">select table</div>
+                                    <div className={"list-group-item " + (this.props.tables.selectedTable ? 'list-group-item-success' : '')}>
+                                        <span>{this.props.tables.selectedTable ? this.props.tables.selectedTable : 'select table'}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-12 col-sm-6 col-md-3 padding-top-40">

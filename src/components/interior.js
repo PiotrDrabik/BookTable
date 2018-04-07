@@ -23,8 +23,8 @@ const Interior = (props) => {
         }
     };
     const defaultLabel = {
-        buttonActive: <FontAwesomeIcon className="white-color" icon={faPlus} />,
-        buttonInactive: <FontAwesomeIcon className="white-color" icon={faTimes} />,
+        buttonActive: <FontAwesomeIcon className="white-txt" icon={faPlus} />,
+        buttonInactive: <FontAwesomeIcon className="white-txt" icon={faTimes} />,
         tooltipActive: 'can be booked',
         tooltipInactive: 'try to change time/date'
     };

@@ -38,6 +38,11 @@
       cursor: pointer;
 }
 
+.first-row {
+      background-color: #f0f0f0;
+      color: black;
+}
+
 .header-style {
       background-color: rgba(255,255,255,0.1);
       border: 1px solid black;

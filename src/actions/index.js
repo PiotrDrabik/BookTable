@@ -32,3 +32,10 @@ export const setArrangement = (data) => {
         arrangement: data
     }
 };
+
+export const setTable = (table) => {
+    return {
+        type: 'SET_TABLE',
+        selectedTable: table
+    }
+};
