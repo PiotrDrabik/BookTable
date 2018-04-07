@@ -3,10 +3,18 @@
     color: black;
 }
 
+.txt-center {
+    text-align: center;
+}
+
 .font-contact {
     font-size: 0.8em;
 }
 
 .border-contact {
     border: 1px lightgrey solid;
+}
+
+.padding-all-5 {
+    padding: 5px
 }

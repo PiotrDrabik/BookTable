@@ -97,7 +97,7 @@ class Top extends Component {
                             <div className="col-12 col-sm-6 col-md-6 col-lg-3">
                                 <div className="list-group padding-top-40">
                                     <div className="list-group-item first-row">Select time interval</div>
-                                    {listTimeItems}
+                                    {listTimeItems} 
                                 </div>
 
                                 <div className="list-group padding-top-15">
@@ -123,9 +123,11 @@ class Top extends Component {
                                     selected={this.localBookDate}
                                     onChange={this.handleChange}/>
                             </div>
-                            <div className="col-12 col-sm-6 col-md-6 col-lg-3 padding-top-40"><Contact />
+                            <div className="col-12 col-sm-6 col-md-6 col-lg-3 padding-top-40">
+                                <Contact />
                             </div>
-                            <div className="col-12 col-sm-6 col-md-6 col-lg-3">col4
+                            <div className="col-12 col-sm-6 col-md-6 col-lg-3 my-auto padding-top-40">
+                                <button type="button" className="btn btn-success save-button">Save reservation</button>
                             </div>
                         </div>
                     </div>
