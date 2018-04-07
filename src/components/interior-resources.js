@@ -39,6 +39,20 @@ export const selectedElement = (item) => {
     }
 };
 
+export const selectedButton = (item) => {
+    if (item.booked === undefined) {
+        return {btnClass: 'btn btn-secondary', disabled: true};
+    }
+    switch (item.booked) {
+        case true:
+            return {btnClass: 'btn btn-danger', disabled: true};
+        case false:
+            return {btnClass: 'btn btn-success', disabled: false};
+        default:
+            return {};
+    }
+};
+
 export const buttonPosition = {
     marginTop: '-73%',
     marginLeft: '40%'

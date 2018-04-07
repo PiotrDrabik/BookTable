@@ -2,26 +2,13 @@ import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus';
 import faTimes from '@fortawesome/fontawesome-free-solid/faTimes';
-import {selectedElement, buttonPosition, descriptionPosition} from './interior-resources';
+import {selectedElement, buttonPosition, descriptionPosition, selectedButton} from './interior-resources';
 
 const Interior = (props) => {
 
     let {arrangement, tableStatus, setTable} = props;
 
     const tooltipPlacement = "bottom";
-    const selectedButton = (item) => {
-        if (item.booked === undefined) {
-            return {btnClass: 'btn btn-secondary', disabled: true};
-        }
-        switch (item.booked) {
-            case true:
-                return {btnClass: 'btn btn-danger', disabled: true};
-            case false:
-                return {btnClass: 'btn btn-success', disabled: false};
-            default:
-                return {};
-        }
-    };
     const defaultLabel = {
         buttonActive: <FontAwesomeIcon className="white-txt" icon={faPlus} />,
         buttonInactive: <FontAwesomeIcon className="white-txt" icon={faTimes} />,
