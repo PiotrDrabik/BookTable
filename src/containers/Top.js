@@ -7,6 +7,8 @@ import * as action from './../actions/index';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Top.css';
 import Contact from './Contact.js';
+import TopResult from './../components/top-result'
+import * as HTTP from './../serviceHttp';
 
 class Top extends Component {
 
@@ -14,13 +16,51 @@ class Top extends Component {
 
         super(props)
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeDate = this.handleChangeDate.bind(this);
         this.setTime = this.setTime.bind(this);
     }
 
-    handleChange(date) {
+    saveReservation() {
 
-        this.compareCurrentDate(date);
+        let validationResult = this.validate();
+        if (!validationResult) {
+            this.props.setAlert('fill all mandatory fields');
+            return false;
+        }
+        let dataToSave = {
+            'time': this.props.bookedTime.bookTime,
+            'date': moment(this.props.bookedDate.rawBookDate).format("YYYY-MM-DD HH:mm:ss"),
+            'table': this.props.tables.selectedTable,
+            'contact': {
+                'name': this.props.contact.name,
+                'email': this.props.contact.email,
+                'comment': this.props.contact.comment,
+            }
+        };
+        console.log('props ', this.props);
+        return HTTP.POST(dataToSave).then( (response) => {
+            console.log(response);
+            console.log(' checking table variable: ', response.data.table);
+            console.log(' checking time variable: ', response.data.time);
+            console.log(' checking date variable: ', response.data.date);
+            console.log(' checking contact.name variable: ', response.data.contact.name);
+        });
+    }
+
+    validate() {
+
+        if (!this.props.bookedDate.bookDate || !this.props.bookedTime.bookTime ||
+            !this.props.contact.comment || !this.props.contact.name ||
+            !this.props.contact.email || !this.props.tables.selectedTable) {
+                return false;
+        } else {
+                return true;
+        }
+    }
+
+    handleChangeDate(newDate) {
+
+        this.compareCurrentDate(newDate);
         this.props.setTime('');
     }
 
@@ -37,7 +77,7 @@ class Top extends Component {
 
         let currentTime = new Date();
 
-        let checkedDate = this.compareCurrentDate(this.props.bookeddate.bookDate);
+        let checkedDate = this.compareCurrentDate(this.props.bookedDate.bookDate);
         if (checkedDate.today) {
             if (moment(currentTime).format("HH") > startHour) {
                 this.props.setAlert('chosen time interval is from the past');
@@ -99,20 +139,7 @@ class Top extends Component {
                                     <div className="list-group-item first-row">Select time interval</div>
                                     {listTimeItems} 
                                 </div>
-
-                                <div className="list-group padding-top-15">
-                                    <div className="list-group-item first-row">Your choice:</div>
-                                    <div className="list-group-item list-group-item-success">{this.props.restaurant.name}</div>
-                                    <div className={"list-group-item " + (this.props.bookeddate.bookDate ? 'list-group-item-success' : '')}>
-                                        <span>{this.props.bookeddate.bookDate ? moment(this.props.bookeddate.bookDate).format('LL') : 'select date'}</span>
-                                    </div>
-                                    <div className={"list-group-item " + (this.props.bookedtime.bookTime ? 'list-group-item-success' : '')}>
-                                        <span>{this.props.bookedtime.bookTime ? this.props.bookedtime.bookTime : 'select time'}</span>
-                                    </div>
-                                    <div className={"list-group-item " + (this.props.tables.selectedTable ? 'list-group-item-success' : '')}>
-                                        <span>{this.props.tables.selectedTable ? this.props.tables.selectedTable : 'select table'}</span>
-                                    </div>
-                                </div>
+                                <TopResult selected={this.props} />
                             </div>
                             <div className="col-12 col-sm-6 col-md-6 col-lg-3 padding-top-40 overflow-no">
                                 <DatePicker
@@ -121,13 +148,15 @@ class Top extends Component {
                                     minDate={moment().subtract(7, "days")}
                                     maxDate={moment().add(3, "months")}
                                     selected={this.localBookDate}
-                                    onChange={this.handleChange}/>
+                                    onChange={this.handleChangeDate}/>
                             </div>
                             <div className="col-12 col-sm-6 col-md-6 col-lg-3 padding-top-40">
                                 <Contact />
                             </div>
                             <div className="col-12 col-sm-6 col-md-6 col-lg-3 my-auto padding-top-40">
-                                <button type="button" className="btn btn-success save-button">Save reservation</button>
+                                <button type="button" 
+                                        onClick={() => this.saveReservation()}
+                                        className="btn btn-success save-button">Save reservation</button>
                             </div>
                         </div>
                     </div>

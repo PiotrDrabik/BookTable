@@ -2,7 +2,7 @@ const initialState = {
     bookTime: ''
 };
 
-const bookedtime = (state = initialState, action) => {
+const bookedTime = (state = initialState, action) => {
     switch(action.type) {
         case 'SET_TIME':
             return {
@@ -14,4 +14,4 @@ const bookedtime = (state = initialState, action) => {
     }
 }
 
-export default bookedtime;
+export default bookedTime;

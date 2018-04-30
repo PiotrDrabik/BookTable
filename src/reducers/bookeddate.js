@@ -2,7 +2,7 @@ const initialState = {
     bookDate: ''
 };
 
-const bookeddate = (state = initialState, action) => {
+const bookedDate = (state = initialState, action) => {
     switch(action.type) {
         case 'SET_DATE':
             return {
@@ -15,4 +15,4 @@ const bookeddate = (state = initialState, action) => {
     }
 }
 
-export default bookeddate;
+export default bookedDate;

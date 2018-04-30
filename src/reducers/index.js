@@ -1,16 +1,18 @@
 import {combineReducers} from 'redux';
-import bookeddate from './bookeddate';
-import bookedtime from './bookedtime';
+import bookedDate from './bookeddate';
+import bookedTime from './bookedtime';
 import restaurant from './restaurant';
 import tables from './tables';
 import alert from './alert';
+import contact from './contact';
 
 const bookTableReducers = combineReducers({
-    bookeddate,
-    bookedtime,
+    bookedDate,
+    bookedTime,
     restaurant,
     alert,
-    tables
+    tables,
+    contact
 });
 
 export default bookTableReducers;

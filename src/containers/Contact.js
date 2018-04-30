@@ -6,11 +6,6 @@ import './Contact.css';
 
 class Contact extends Component {
 
-    constructor(props) {
-
-        super(props)
-    }
-
     render() {
 
         return (
@@ -22,47 +17,22 @@ class Contact extends Component {
                 <form>
                     <div className="row">
                         <div className="col">
-                            <input type="text" className="form-control form-control-sm" placeholder="Name" />
+                            <input type="text" className="form-control form-control-sm" value={this.props.contact.name} onChange={(e) => {this.props.setName(e.target.value)}} placeholder="Name" />
                         </div>
-                        <div class="col">
-                            <input type="email" className="form-control form-control-sm" placeholder="Email" />
+                        <div className="col">
+                            <input type="email" className="form-control form-control-sm" value={this.props.contact.email} onChange={(e) => {this.props.setEmail(e.target.value)}} placeholder="Email" />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <div class="form-group padding-top-15">
+                            <div className="form-group padding-top-15">
                                 <div className="font-contact">Would you like to leave some comment? You can put your phone number below.</div>
-                                <textarea class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3" placeholder="Comment / Phone number"></textarea>
+                                <textarea className="form-control form-control-sm" id="formControlTextarea1" rows="3" value={this.props.contact.comment} onChange={(e) => {this.props.setComment(e.target.value)}} placeholder="Comment / Phone number"></textarea>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-                {/*<div className="list-group">
-                     <div className="list-group-item first-row">Contact:</div>
-                     <div className="list-group-item">
-                <div className="font-contact txt-contact padding-all-5">Put your name and e-mail address. The confirmation e-mail will be sent.</div>
-                <form className="padding-all-5">
-                    <div className="row">
-                        <div className="col">
-                            <input type="text" className="form-control form-control-sm" placeholder="Name" />
-                        </div>
-                        <div class="col">
-                            <input type="email" className="form-control form-control-sm" placeholder="Email" />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col">
-                            <div class="form-group padding-top-15">
-                                <div className="font-contact txt-contact padding-all-5">Would you like to leave some comment? You can put your phone number below.</div>
-                                <textarea class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3" placeholder="Comment / Phone number"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
-                     </div>
-                </div>*/}
             </div>
         )
     }
@@ -76,7 +46,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
     return {
-
+        setAlert: (message) => dispatch(action.setAlert(message)),
+        setName: (name) => dispatch(action.setName(name)),
+        setEmail: (email) => dispatch(action.setEmail(email)),
+        setComment: (comment) => dispatch(action.setComment(comment))
     }
 };
 

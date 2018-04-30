@@ -39,3 +39,24 @@ export const setTable = (table) => {
         selectedTable: table
     }
 };
+
+export const setName = (name) => {
+    return {
+        type: 'SET_NAME',
+        name: name
+    }
+};
+
+export const setEmail = (email) => {
+    return {
+        type: 'SET_EMAIL',
+        email: email
+    }
+};
+ 
+export const setComment = (comment) => {
+    return {
+        type: 'SET_COMMENT',
+        comment: comment
+    }
+};
