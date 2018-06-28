@@ -33,10 +33,11 @@ export const setArrangement = (data) => {
     }
 };
 
-export const setTable = (table) => {
+export const setTable = (table, id) => {
     return {
         type: 'SET_TABLE',
-        selectedTable: table
+        selectedTable: table,
+        selectedTableId: id
     }
 };
 

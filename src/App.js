@@ -40,6 +40,8 @@ class App extends Component {
             background: `url(${imgWood}) repeat`,
             minWidth: '310px'
         };
+        /* TODO replace this by GET data from the backend every time if data and time is selected
+         */
         const tableStatus = {
             'table #1': {booked: true, btnLabel: 'pending', txtTooltip: 'try to change time/date'},
             'table #2': {booked: false},
@@ -80,7 +82,6 @@ const Home = () => (
 );
 
 const About = ({ match }) => {
-    console.log(match.params);
     return (
     <div>
         <h2 onClick={() => console.log(match.params)}>About</h2>
@@ -97,7 +98,7 @@ const mapDispatchToProps = (dispatch) => {
 
     return {
         setArrangement: (data) => dispatch(action.setArrangement(data)),
-        setTable: (table) => dispatch(action.setTable(table))
+        setTable: (table, id) => dispatch(action.setTable(table, id))
     }
 };
 

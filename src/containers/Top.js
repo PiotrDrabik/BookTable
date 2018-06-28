@@ -15,47 +15,46 @@ class Top extends Component {
     constructor(props) {
 
         super(props)
-
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.setTime = this.setTime.bind(this);
     }
 
     saveReservation() {
 
-        let validationResult = this.validate();
+        const MANDATORY_FIELDS = [
+            this.props.bookedDate.bookDate, this.props.bookedTime.bookTime,
+            this.props.contact.comment, this.props.contact.name, 
+            this.props.contact.email, this.props.tables.selectedTable
+            ];
+        const prepareDataToSave = () => {
+            return {
+                'time': this.props.bookedTime.bookTime,
+                'date': moment(this.props.bookedDate.rawBookDate).format("YYYY-MM-DD"),
+                'table': this.props.tables.selectedTableId,
+                'contact': {
+                    'name': this.props.contact.name,
+                    'email': this.props.contact.email,
+                    'comment': this.props.contact.comment,
+                }
+            };
+        };
+        let validationResult = this.validate(MANDATORY_FIELDS);
         if (!validationResult) {
             this.props.setAlert('fill all mandatory fields');
             return false;
         }
-        let dataToSave = {
-            'time': this.props.bookedTime.bookTime,
-            'date': moment(this.props.bookedDate.rawBookDate).format("YYYY-MM-DD HH:mm:ss"),
-            'table': this.props.tables.selectedTable,
-            'contact': {
-                'name': this.props.contact.name,
-                'email': this.props.contact.email,
-                'comment': this.props.contact.comment,
-            }
-        };
-        console.log('props ', this.props);
+        let dataToSave = prepareDataToSave();
         return HTTP.POST(dataToSave).then( (response) => {
             console.log(response);
-            console.log(' checking table variable: ', response.data.table);
-            console.log(' checking time variable: ', response.data.time);
-            console.log(' checking date variable: ', response.data.date);
-            console.log(' checking contact.name variable: ', response.data.contact.name);
         });
     }
 
-    validate() {
+    validate(mandatoryItems) {
 
-        if (!this.props.bookedDate.bookDate || !this.props.bookedTime.bookTime ||
-            !this.props.contact.comment || !this.props.contact.name ||
-            !this.props.contact.email || !this.props.tables.selectedTable) {
-                return false;
-        } else {
-                return true;
-        }
+        let result = mandatoryItems.filter( (item) => {
+            return !item;
+        });
+        return result.length > 0 ? false : true; 
     }
 
     handleChangeDate(newDate) {

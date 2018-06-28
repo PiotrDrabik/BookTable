@@ -22,7 +22,7 @@ const Interior = (props) => {
 
         return <div className="col-12 col-md-3" key={element.field_id}>
                     <div style={item.bgStyle}></div>
-                    <button type="button" onClick={() => setTable(element.field_id)} style={buttonPosition} data-toggle={button.disabled ? '' :'tooltip'}
+                    <button type="button" onClick={() => setTable(element.field_id, element.id)} style={buttonPosition} data-toggle={button.disabled ? '' :'tooltip'}
                             data-placement={tooltipPlacement} title={tooltipTitle} className={button.btnClass} disabled={button.disabled}>
                         {tableStatus[element.field_id] ? tableStatus[element.field_id].btnLabel || (button.disabled ? defaultLabel.buttonInactive : defaultLabel.buttonActive) : ''}
                     </button>
